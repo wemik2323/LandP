@@ -11,18 +11,18 @@ class lab1 {
         ArrayList<Double> arr1 = new ArrayList<Double>(6);
         LinkedList<Double> arr2 = new LinkedList<Double>();
         Scanner systemIn = new Scanner(System.in);
-  //      System.out.println(task1(systemIn, array1));
-  //      System.out.println(task1(systemIn, array2));
-    
-        System.out.println(task2(systemIn, arr1.toArray()));
-        System.out.println(task2(systemIn, arr2.toArray()));
 
-        array1_out(array1, array2);
+        System.out.println(task1(systemIn, array1));
+        System.out.println(task1(systemIn, array2));
+        task1_arr_out(array1, array2);
+
+        task2(systemIn, arr1, arr2);
+        task2_arr_out(arr1, arr2);
     }
 
     static double task1(Scanner systemIn, double[] array) {
         for(int i = 0; i < Array.getLength(array); ++i) {
-            array[i] = Math.sqrt(systemIn.nextInt());
+            array[i] = Math.sqrt(systemIn.nextDouble());
         }
 
         double arrayMin = array[0];
@@ -33,19 +33,34 @@ class lab1 {
     }
 
    
-    static Object task2(Scanner systemIn, Object[] array) {
-        for(int i = 0; i < Array.getLength(array); ++i) {
-            array[i] = Math.sqrt(systemIn.nextInt());
+    static void task2(Scanner systemIn, ArrayList<Double> arr1, LinkedList<Double> arr2) {
+        Double newDouble;
+        for(int i = 0; i < 6; i++) {
+            newDouble = systemIn.nextDouble();
+            arr1.add(newDouble);
         }
-        System.out.println(array);
+        double arrayMin = arr1.get(0);
+        for (var i : arr1)
+            arrayMin = Math.min(arrayMin, i);
+        System.out.printf("Минимальный элемент: %f\n", arrayMin);
 
-        Object arrayMin = array[0];
-
-        return arrayMin;
+        for(int i = 0; i < 7; i++) {
+            newDouble = systemIn.nextDouble();
+            arr2.add(newDouble);
+        }
+        arrayMin = arr2.get(0);
+        for (var i : arr2)
+            arrayMin = Math.min(arrayMin, i);
+        System.out.printf("Минимальный элемент: %f\n", arrayMin);
     }
 
-    static void array1_out(double[] array1, double[] array2) {
+    static void task1_arr_out(double[] array1, double[] array2) {
         System.out.println(Arrays.toString(array1));
         System.out.println(Arrays.toString(array2));
+    }
+
+    static void task2_arr_out(ArrayList<Double> array1, LinkedList<Double> array2) {
+        System.out.println(array1);
+        System.out.println(array2);
     }
 }

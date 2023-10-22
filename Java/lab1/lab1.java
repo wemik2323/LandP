@@ -4,63 +4,94 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-class lab1 {
+class lab1 {    
     public static void main(String args[]) {
         double[] array1 = new double[6];
-        double[] array2 = new double[7];
-        ArrayList<Double> arr1 = new ArrayList<Double>(6);
-        LinkedList<Double> arr2 = new LinkedList<Double>();
+        double[] array2 = new double[4];
+        double[] array3 = new double[3];
+
+        ArrayList<Double> arr1 = new ArrayList<Double>();
+        ArrayList<Double> arr2 = new ArrayList<Double>();
+        LinkedList<Double> arr3 = new LinkedList<Double>();
+
         Scanner systemIn = new Scanner(System.in);
 
-        System.out.println(task1(systemIn, array1));
-        System.out.println(task1(systemIn, array2));
-        task1_arr_out(array1, array2);
-
-        task2(systemIn, arr1, arr2);
-        task2_arr_out(arr1, arr2);
+// Задание 1
+        task1(systemIn, array1);
+        task1_arr_out(array1);
+        task1(systemIn, array2);
+        task1_arr_out(array2);
+        task1(systemIn, array3);
+        task1_arr_out(array3);
+        
+// Задание 2
+        task2_ArrList(systemIn, arr1, 6);
+        task2_ArrList_out(arr1);
+        task2_ArrList(systemIn, arr2, 4);
+        task2_ArrList_out(arr2);
+        task2_LinkList(systemIn, arr3, 3);
+        task2_LinkList_out(arr3);
     }
 
-    static double task1(Scanner systemIn, double[] array) {
+    static void task1(Scanner systemIn, double[] array) {
+        double sum = 0;
+        System.out.println("task1 - in progress\nВведите элементы массива:");
         for(int i = 0; i < Array.getLength(array); ++i) {
-            array[i] = Math.sqrt(systemIn.nextDouble());
+            System.out.print(i + " - ");
+            array[i] = systemIn.nextDouble();
+            if (array[i] < 0) {array[i] = 10; continue;}
+            sum += array[i];
         }
 
-        double arrayMin = array[0];
-        for (var i : array)
-            arrayMin = Math.min(arrayMin, i);
-
-        return arrayMin;
+        System.out.println("Сумма положительных элементов заданного массива = " + sum);
     }
 
    
-    static void task2(Scanner systemIn, ArrayList<Double> arr1, LinkedList<Double> arr2) {
-        Double newDouble;
-        for(int i = 0; i < 6; i++) {
-            newDouble = systemIn.nextDouble();
-            arr1.add(newDouble);
+    static void task2_ArrList(Scanner systemIn, ArrayList<Double> arr, int size) {
+        double sum = 0;
+        System.out.println("task2 - in progress\nВведите элементы массива:");
+        for(int i = 0; i < size; i++) {
+            System.out.print(i + " - ");
+            double newDouble = systemIn.nextDouble();
+            arr.add(newDouble);
+            if (newDouble < 0) {
+                newDouble = 10;
+                arr.set(i, newDouble);
+                continue;
+            }
+            sum += newDouble;
         }
-        double arrayMin = arr1.get(0);
-        for (var i : arr1)
-            arrayMin = Math.min(arrayMin, i);
-        System.out.printf("Минимальный элемент: %f\n", arrayMin);
 
-        for(int i = 0; i < 7; i++) {
-            newDouble = systemIn.nextDouble();
-            arr2.add(newDouble);
-        }
-        arrayMin = arr2.get(0);
-        for (var i : arr2)
-            arrayMin = Math.min(arrayMin, i);
-        System.out.printf("Минимальный элемент: %f\n", arrayMin);
+        System.out.println("Сумма положительных элементов заданного массива = " + sum);
     }
 
-    static void task1_arr_out(double[] array1, double[] array2) {
-        System.out.println(Arrays.toString(array1));
-        System.out.println(Arrays.toString(array2));
+    static void task2_LinkList(Scanner systemIn, LinkedList<Double> arr, int size) {
+        double sum = 0;
+        System.out.println("task2 - in progress\nВведите элементы массива:");
+        for(int i = 0; i < size; i++) {
+            System.out.print(i + " - ");
+            double newDouble = systemIn.nextDouble();
+            arr.add(newDouble);
+            if (newDouble < 0) {
+                newDouble = 10;
+                arr.set(i, newDouble);
+                continue;
+            }
+            sum += newDouble;
+        }
+
+        System.out.println("Сумма положительных элементов заданного массива = " + sum);
     }
 
-    static void task2_arr_out(ArrayList<Double> array1, LinkedList<Double> array2) {
-        System.out.println(array1);
-        System.out.println(array2);
+    static void task1_arr_out(double[] arr) {
+        System.out.println(Arrays.toString(arr));
+    }
+
+    static void task2_LinkList_out(LinkedList<Double> arr) {
+        System.out.println(arr);
+    }
+
+    static void task2_ArrList_out(ArrayList<Double> arr) {
+        System.out.println(arr);
     }
 }

@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 class rations extends product {
     String typeOfFood;
-    int weight;
+    double weightKg;
 
     rations() {
         cost = 0;
         mfr = null;
         typeOfFood = null;
-        weight = 0;
+        weightKg = 0;
     }
 
     rations(Scanner systemIn) {
@@ -28,7 +28,7 @@ class rations extends product {
 
     void secondPropInput(Scanner systemIn) {
         System.out.println("Введите вес продовольствия: ");
-        weight = systemIn.nextInt();
+        weightKg = readDouble(systemIn);
         systemIn.nextLine();
     }
 
@@ -37,7 +37,7 @@ class rations extends product {
         System.out.println("Цена продовольствия: " + cost);
         System.out.println("Марка продовольствия: " + mfr);
         System.out.println("Тип продовольствия: " + typeOfFood);
-        System.out.println("Вес продовольствия: " + weight);
+        System.out.println("Вес продовольствия: " + weightKg);
     }
 
     void virtual() {

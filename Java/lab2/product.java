@@ -18,13 +18,24 @@ abstract class product {
 
     void costInput(Scanner systemIn) {
         System.out.println("Введите стоимость товара: ");
-        cost = systemIn.nextDouble();
+        cost = readDouble(systemIn);
         systemIn.nextLine();
     }
 
     void mfrInput(Scanner systemIn) {
         System.out.println("Введите марку товара: ");
         mfr = systemIn.nextLine();
+    }
+
+    double readDouble(Scanner systemIn) {
+        while(true) {
+            if (systemIn.hasNextDouble()) {
+                return systemIn.nextDouble();
+            } else {
+                System.out.println("Ошибка ввода! Введите число.");
+                systemIn.nextLine();
+            }
+        }
     }
 
     abstract void dataOutput();

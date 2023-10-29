@@ -38,7 +38,7 @@ class lab1 {
         System.out.println("task1 - in progress\nВведите элементы массива:");
         for(int i = 0; i < Array.getLength(array); ++i) {
             System.out.print(i + " - ");
-            array[i] = systemIn.nextDouble();
+            array[i] = readDouble(systemIn);
             if (array[i] < 0) {array[i] = 10; continue;}
             sum += array[i];
         }
@@ -52,7 +52,7 @@ class lab1 {
         System.out.println("task2 - in progress\nВведите элементы массива:");
         for(int i = 0; i < size; i++) {
             System.out.print(i + " - ");
-            double newDouble = systemIn.nextDouble();
+            double newDouble = readDouble(systemIn);
             arr.add(newDouble);
             if (newDouble < 0) {
                 newDouble = 10;
@@ -70,7 +70,7 @@ class lab1 {
         System.out.println("task2 - in progress\nВведите элементы массива:");
         for(int i = 0; i < size; i++) {
             System.out.print(i + " - ");
-            double newDouble = systemIn.nextDouble();
+            double newDouble = readDouble(systemIn);
             arr.add(newDouble);
             if (newDouble < 0) {
                 newDouble = 10;
@@ -81,6 +81,17 @@ class lab1 {
         }
 
         System.out.println("Сумма положительных элементов заданного массива = " + sum);
+    }
+
+    static double readDouble(Scanner systemIn) {
+        while(true) {
+            if (systemIn.hasNextDouble()) {
+                return systemIn.nextDouble();
+            } else {
+                System.out.println("Ошибка ввода! Введите число.");
+                systemIn.nextLine();
+            }
+        }
     }
 
     static void task1_arr_out(double[] arr) {

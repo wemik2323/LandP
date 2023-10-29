@@ -13,7 +13,7 @@ public class lab2 {
         
         while(true) {
             menuOutput();
-            int choice = systemIn.nextInt();
+            int choice = readInt(systemIn);
             switch (choice) {
                 case (1) :
                     makeProdRations(systemIn, arrProducts);
@@ -55,19 +55,19 @@ public class lab2 {
         System.out.println("=================================================");
     }
 
-    static void makeProdRations(Scanner systemInNumbers, ArrayList<product> arrProducts) {
-        rations prodRations = new rations(systemInNumbers);
+    static void makeProdRations(Scanner systemIn, ArrayList<product> arrProducts) {
+        rations prodRations = new rations(systemIn);
         arrProducts.add(prodRations);
     }
 
-    static void makeProdClothing(Scanner systemInNumbers, ArrayList<product> arrProducts) {
-        clothing prodClothing = new clothing(systemInNumbers);
+    static void makeProdClothing(Scanner systemIn, ArrayList<product> arrProducts) {
+        clothing prodClothing = new clothing(systemIn);
         arrProducts.add(prodClothing);
     }
 
-    static void menuChangeProps(Scanner systemInNumbers, ArrayList<product> arrProducts) {
+    static void menuChangeProps(Scanner systemIn, ArrayList<product> arrProducts) {
         System.out.println("Выберите элемент массива 1 - " + arrProducts.size()+1);
-        int choice = systemInNumbers.nextInt();
+        int choice = readInt(systemIn);
         if (choice > arrProducts.size() || choice < 0) {
             System.out.println("Ошибка выбора!");
             return;
@@ -79,19 +79,19 @@ public class lab2 {
             System.out.println("2. Марка");
             System.out.println("3. Тип продовольствия");
             System.out.println("4. Вес продовольствия");
-            int choiceProp = systemInNumbers.nextInt();
+            int choiceProp = readInt(systemIn);
             switch (choiceProp) {
                 case (1) :
-                    arrProducts.get(choice - 1).costInput(systemInNumbers);
+                    arrProducts.get(choice - 1).costInput(systemIn);
                     break;
                 case (2) :
-                    arrProducts.get(choice - 1).mfrInput(systemInNumbers);
+                    arrProducts.get(choice - 1).mfrInput(systemIn);
                     break;
                 case (3) :
-                    arrProducts.get(choice - 1).firstPropInput(systemInNumbers);
+                    arrProducts.get(choice - 1).firstPropInput(systemIn);
                     break;
                 case (4) :
-                    arrProducts.get(choice - 1).secondPropInput(systemInNumbers);
+                    arrProducts.get(choice - 1).secondPropInput(systemIn);
                     break;
             }
         }
@@ -101,20 +101,31 @@ public class lab2 {
             System.out.println("2. Марка");
             System.out.println("3. Тип одежды");
             System.out.println("4. Цвет одежды");
-            int choiceProp = systemInNumbers.nextInt();
+            int choiceProp = readInt(systemIn);
             switch (choiceProp) {
                 case (1) :
-                    arrProducts.get(choice - 1).costInput(systemInNumbers);
+                    arrProducts.get(choice - 1).costInput(systemIn);
                     break;
                 case (2) :
-                    arrProducts.get(choice - 1).mfrInput(systemInNumbers);
+                    arrProducts.get(choice - 1).mfrInput(systemIn);
                     break;
                 case (3) :
-                    arrProducts.get(choice - 1).firstPropInput(systemInNumbers);
+                    arrProducts.get(choice - 1).firstPropInput(systemIn);
                     break;
                 case (4) :
-                    arrProducts.get(choice - 1).secondPropInput(systemInNumbers);
+                    arrProducts.get(choice - 1).secondPropInput(systemIn);
                     break;
+            }
+        }
+    }
+
+    static int readInt(Scanner systemIn) {
+        while(true) {
+            if (systemIn.hasNextInt()) {
+                return systemIn.nextInt();
+            } else {
+                System.out.println("Ошибка ввода! Введите число.");
+                systemIn.nextLine();
             }
         }
     }

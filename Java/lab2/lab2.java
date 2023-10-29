@@ -8,18 +8,18 @@ public class lab2 {
     public static void main(String[] args) {
         Scanner systemIn = new Scanner(System.in);
         // Scanner systemInStrings = new Scanner(System.in);
-
         ArrayList<product> arrProducts = new ArrayList<>();
+        int amountOfProducts = 0;
         
         while(true) {
             menuOutput();
             int choice = readInt(systemIn);
             switch (choice) {
                 case (1) :
-                    makeProdRations(systemIn, arrProducts);
+                    makeProdRations(systemIn, arrProducts, amountOfProducts);
                     break;
                 case (2) :
-                    makeProdClothing(systemIn, arrProducts);
+                    makeProdClothing(systemIn, arrProducts, amountOfProducts);
                     break;
                 case (3) :
                     for (product p : arrProducts) {
@@ -28,7 +28,7 @@ public class lab2 {
                     }
                     break;
                 case (4) :
-                    menuChangeProps(systemIn, arrProducts);
+                    menuChangeProps(systemIn, arrProducts, amountOfProducts);
                     break;
                 case (5) :
                     double sum = 0;
@@ -55,20 +55,27 @@ public class lab2 {
         System.out.println("=================================================");
     }
 
-    static void makeProdRations(Scanner systemIn, ArrayList<product> arrProducts) {
+    static void makeProdRations(Scanner systemIn, ArrayList<product> arrProducts, int amountOfProducts) {
         rations prodRations = new rations(systemIn);
         arrProducts.add(prodRations);
+        amountOfProducts++;
     }
 
-    static void makeProdClothing(Scanner systemIn, ArrayList<product> arrProducts) {
+    static void makeProdClothing(Scanner systemIn, ArrayList<product> arrProducts, int amountOfProducts) {
         clothing prodClothing = new clothing(systemIn);
         arrProducts.add(prodClothing);
+        amountOfProducts++;
     }
 
-    static void menuChangeProps(Scanner systemIn, ArrayList<product> arrProducts) {
-        System.out.println("Выберите элемент массива 1 - " + arrProducts.size()+1);
+    static void menuChangeProps(Scanner systemIn, ArrayList<product> arrProducts, int amountOfProducts) {
+        if(amountOfProducts == 0) {
+            System.out.println("Ошибка. Вы не можете изменять свойства несуществующих объектов!");
+            return;
+        }
+
+        System.out.println("Выберите элемент массива 1 - " + amountOfProducts);
         int choice = readInt(systemIn);
-        if (choice > arrProducts.size() || choice < 0) {
+        if (choice > amountOfProducts || choice < 0) {
             System.out.println("Ошибка выбора!");
             return;
         }

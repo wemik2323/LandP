@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -11,6 +11,63 @@ body{
     width: 100vw;
     height: 100vh;
     background-color: #181818;
+}
+h2 {
+  position: relative;
+  text-align: center;
+  font-size: 60px;
+  font-family: 'Oxanium';
+  color:#ffda62;
+  margin: 0;
+  
+}
+p {
+  font-family: 'Oxanium';
+  font-weight: 300;
+  text-align: center;
+  font-size: 30px;
+  color:#c49d1d;
+  margin: 0;
+}
+label #btn,label #cancel{
+  position: absolute;
+  left: 5px;
+  cursor: pointer;
+  color: rgb(175, 175, 175);
+  border-radius: 5px;
+  margin: 15px 30px;
+  font-size: 29px;
+  background-color: #555555;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+      inset -7px -7px 10px 0px rgba(0,0,0,.1),
+      3.5px 3.5px 20px 0px rgba(0,0,0,.1),
+      2px 2px 5px 0px rgba(0,0,0,.1);
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
+  line-height: 45px;
+  transition: all .5s ease;
+}
+label #cancel{
+  opacity: 0;
+  visibility: hidden;
+}
+
+#check:checked ~ .sidebar{
+  left: 0;
+}
+
+#check:checked ~ label #btn{
+  margin-left: 245px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#check:checked ~ label #cancel{
+  margin-left: 245px;
+  opacity: 1;
+  visibility: visible;
 }
 
 .sidebar{
@@ -29,6 +86,99 @@ body{
     text-transform: uppercase;
     font-family: 'Oxanium';
     color: #ffffff;
+}
+
+.sidebar a{
+    display: block;
+    height: 65px;
+    width: 100%;
+    line-height: 65px;
+    padding-left: 30px;
+    box-sizing: border-box;
+    border-left: 5px solid transparent;
+    font-family: 'Share Tech Mono';
+    color: #cf0101;
+    transition: all .5s ease;
+}
+a.active,a:hover{
+    border-left: 5px solid var(--accent-color);
+    color: #4b3232;
+    background: linear-gradient(to left, var(--accent-color), var(--gradient-color));
+}
+.sidebar a i{
+    font-size: 23px;
+    margin-right: 16px;
+}
+.sidebar a span{
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+#check{
+    display: none;
+}
+@media(max-width : 860px) {
+    .sidebar{
+        height: auto;
+        width: 70px;
+        left: 0;
+        margin: 100px 0;
+    }
+    header,#btn,#cancel{
+        display: none;
+    }
+    span{
+        position: absolute;
+        margin-left: 23px;
+        opacity: 0;
+        visibility: hidden;
+    }
+    .sidebar a{
+        height: 60px;
+    }
+    .sidebar a i{
+        margin-left: -10px;
+    }
+    a:hover {
+        width: 200px;
+        background: inherit;
+    }
+    .sidebar a:hover span{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* ------------- Animations & CHNG colors ------------- */
+.sidebar > a.active,.sidebar > a:hover:nth-child(even) {
+  --accent-color: #f48552;
+  --gradient-color: #3f2708;
+}
+.sidebar a.active,.sidebar > a:hover:nth-child(odd) {
+  --accent-color: #f48552;
+  --gradient-color: #3f2708;
+}
+
+/* Main page animations */
+.Main_Window {
+    width: 50%;
+    height: 30%;
+    margin: auto;
+    text-align: center;
+
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: samefadeIn;
+    animation-name: samefadeIn;
+}
+@-webkit-keyframes samefadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+@keyframes samefadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 .sidebar {
@@ -54,7 +204,6 @@ body{
     }
   }
 }
-
 @keyframes glitch-before {
     0% {
       clip: rect(20px, 350px, 124px, 30px);
@@ -186,151 +335,3 @@ body{
     }
 }
 
-.sidebar a{
-    display: block;
-    height: 65px;
-    width: 100%;
-    line-height: 65px;
-    padding-left: 30px;
-    box-sizing: border-box;
-    border-left: 5px solid transparent;
-    font-family: 'Share Tech Mono';
-    color: #cf0101;
-    transition: all .5s ease;
-}
-a.active,a:hover{
-    border-left: 5px solid var(--accent-color);
-    color: #4b3232;
-    background: linear-gradient(to left, var(--accent-color), var(--gradient-color));
-}
-.sidebar a i{
-    font-size: 23px;
-    margin-right: 16px;
-}
-.sidebar a span{
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-#check{
-    display: none;
-}
-label #btn,label #cancel{
-    position: absolute;
-    left: 5px;
-    cursor: pointer;
-    color: rgb(175, 175, 175);
-    border-radius: 5px;
-    margin: 15px 30px;
-    font-size: 29px;
-    background-color: #555555;
-    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-        inset -7px -7px 10px 0px rgba(0,0,0,.1),
-        3.5px 3.5px 20px 0px rgba(0,0,0,.1),
-        2px 2px 5px 0px rgba(0,0,0,.1);
-    height: 45px;
-    width: 45px;
-    text-align: center;
-    text-shadow: 2px 2px 3px rgba(255,255,255,0.5);
-    line-height: 45px;
-    transition: all .5s ease;
-}
-label #cancel{
-    opacity: 0;
-    visibility: hidden;
-}
-#check:checked ~ .sidebar{
-    left: 0;
-}
-#check:checked ~ label #btn{
-    margin-left: 245px;
-    opacity: 0;
-    visibility: hidden;
-}
-#check:checked ~ label #cancel{
-    margin-left: 245px;
-    opacity: 1;
-    visibility: visible;
-}
-@media(max-width : 860px) {
-    .sidebar{
-        height: auto;
-        width: 70px;
-        left: 0;
-        margin: 100px 0;
-    }
-    header,#btn,#cancel{
-        display: none;
-    }
-    span{
-        position: absolute;
-        margin-left: 23px;
-        opacity: 0;
-        visibility: hidden;
-    }
-    .sidebar a{
-        height: 60px;
-    }
-    .sidebar a i{
-        margin-left: -10px;
-    }
-    a:hover {
-        width: 200px;
-        background: inherit;
-    }
-    .sidebar a:hover span{
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-.sidebar > a.active,.sidebar > a:hover:nth-child(even) {
-  --accent-color: #f48552;
-  --gradient-color: #3f2708;
-}
-.sidebar a.active,.sidebar > a:hover:nth-child(odd) {
-  --accent-color: #f48552;
-  --gradient-color: #3f2708;
-}
-
-.Main_Window {
-    width: 50%;
-    height: 30%;
-    margin: auto;
-    text-align: center;
-
-    -webkit-animation-duration: 5s;
-    animation-duration: 5s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    -webkit-animation-name: fadeIn;
-    animation-name: fadeIn;
-}
-
-@-webkit-keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-
-@keyframes fadeIn {
-    0% {opacity: 0;}
-    100% {opacity: 1;}
-}
-
-h2 {
-    position: relative;
-    text-align: center;
-    font-size: 60px;
-    font-family: 'Oxanium';
-    color:#ffda62;
-    margin: 0;
-    
-}
-
-p {
-    font-family: 'Oxanium';
-    font-weight: 300;
-    text-align: center;
-    font-size: 30px;
-    color:#c49d1d;
-    margin: 0;
-}

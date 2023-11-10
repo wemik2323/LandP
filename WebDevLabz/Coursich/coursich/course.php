@@ -1,3 +1,15 @@
+<?php
+// start the session
+session_start();
+
+// Check if the user is not logged in, then redirect the user to login page
+if ($_SESSION["loggedIn"] !== true) {
+    header("location: login.php");
+    global $name;
+    $name=$_SESSION["username"];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxanium&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="styles/styles.css" rel="stylesheet">
 </head>
 <body>
     <input type="checkbox" id="check">
@@ -39,16 +51,21 @@
             <i class="fas fa-sliders-h"></i>
             <span>Services</span>
         </a>
+        <!-- IN PROGGRESS -->
         <a target="_blank" rel="noopener noreferrer" href="https://vk.com/wemik2323">
             <i class="far fa-envelope"></i>
             <span>Contact</span>
+        </a>
+        <a href="logout.php">
+            <i class="far fa-address-card"></i>
+            <span>Log Out</span>
         </a>
     </div>
 </body>
     
 <div class="Main_Window">
-    <p> Gay sex </p>
-    <h2 class="delayAppearence">IS HARAM</h2>
+    <p> Welcome </p>
+    <h2 class="delayAppearence"><?=$_SESSION["email"]?></h2>
     <p></p>
 </div>
 

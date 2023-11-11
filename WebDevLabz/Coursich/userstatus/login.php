@@ -1,13 +1,13 @@
 <?php
-require_once "subpages/config.php";
-require_once "subpages/session.php";
+require_once "../subpages/config.php";
+require_once "../subpages/session.php";
 global $error, $nameBD;
 $error = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     $email = trim($_POST['email']);
-    $password = trim($_POST['password']);
+    $real_password = trim($_POST['password']);
 
     // validate if email is empty
     if (empty($email)) {
@@ -15,27 +15,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 
     // validate if password is empty
-    if (empty($password)) {
+    if (empty($real_password)) {
         $error .= '<div class="hintBar">Please enter your password.</div>';
     }
 
     if (empty($error)) {
         $query = "SELECT * FROM users WHERE email = (?)";
-        if($stmt = $db->prepare($query)) {
-            $stmt->bind_param('s', $email);
-            $stmt->execute();
-            $stmt->bind_result($idBD, $nameDB, $passwordDB, $emailDB);
-            $stmt->fetch();
+        if($statement = $db->prepare($query)) {
+            $statement->bind_param('s', $email);
+            $statement->execute();
+            $statement->bind_result($idBD, $nameDB, $passwordDB, $emailDB, $fullnameDB, $descriptionDB);
+            $statement->fetch();
             // echo $nameDB;
             if ($emailDB==$email) { 
-                if (password_verify($password, $passwordDB)) {
-                    $_SESSION["loggedIn"] = true;
-                    $_SESSION["userid"] = $idBD;
-                    $_SESSION["username"] = $nameBD;
-                    $_SESSION["email"] = $emailDB;
-                    $_SESSION["password"] = $password;
+                if (password_verify($real_password, $passwordDB)) {
+                    $_SESSION["userLoggedIn"] = true;
+                    $_SESSION["userId"] = $idBD;
+                    $_SESSION["userLogin"] = $nameBD;
+                    $_SESSION["userEmail"] = $emailDB;
+                    $_SESSION["userPassword"] = $passwordDB;
+                    $_SESSION["userFullname"] = $fullnameDB;
+                    $_SESSION["userDescription"] = $descriptionDB;
                     // Redirect the user to welcome page
-                    header("location: course.php");
+                    header("location: ../welcome.php");
                     exit;
                 } else {
                     $error .= '<div class="hintBar">The password is not valid.</div>';
@@ -44,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 $error .= '<div class="hintBar">No user exist with that email address.</div>';
             }
         }
-        $stmt->close();
+        $statement->close();
     }
     // Close connection
     mysqli_close($db);
@@ -58,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oxanium&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-        <link href="styles/register.css" rel="stylesheet">
+        <link href="../styles/register.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">

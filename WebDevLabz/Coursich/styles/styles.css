@@ -1,4 +1,5 @@
 * {
+    font-family: 'Share Tech Mobo';
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -29,6 +30,32 @@ p {
   color:#c49d1d;
   margin: 0;
 }
+.hintBar {
+  background: rgb(104, 85, 0);
+  border: 0.125rem solid;
+  padding: 8px;
+  border-radius: 10px;
+  display:inline-block;
+  color: rgb(184, 150, 0);
+}
+.errorBar {
+  background: rgb(104, 0, 0);
+  border: 0.125rem solid;
+  padding: 8px;
+  border-radius: 10px;
+  display:inline-block;
+  color: rgb(184, 0, 0);
+}
+.successBar {
+  background: rgb(28, 0, 104);
+  border: 0.125rem solid;
+  padding: 8px;
+  border-radius: 10px;
+  display:inline-block;
+  color: rgb(28, 0, 184);
+}
+
+
 label #btn,label #cancel{
   position: absolute;
   left: 5px;

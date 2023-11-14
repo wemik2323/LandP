@@ -32,6 +32,15 @@ class rations extends product {
         systemIn.nextLine();
     }
 
+    String getFirstProp() {
+        return typeOfFood;
+    }
+
+    double getSecondProp() {
+        return weightKg;
+    }
+
+
     void dataOutput() {
         System.out.println("\nВывод данных продовольствия:");
         System.out.println("Цена продовольствия: " + cost);

@@ -8,9 +8,9 @@ class clothing extends product {
 
     clothing() {
         cost = 0;
-        mfr = null;
-        typeOfClothing = null;
-        color = null;
+        mfr = "";
+        typeOfClothing = "";
+        color = "";
     }
 
     clothing(Scanner systemIn) {
@@ -29,6 +29,14 @@ class clothing extends product {
     void secondPropInput(Scanner systemIn) {
         System.out.println("Введите цвет одежды: ");
         color = systemIn.nextLine();
+    }
+
+    String getFirstProp() {
+        return typeOfClothing;
+    }
+
+    String getSecondProp() {
+        return color;
     }
 
     void dataOutput() {

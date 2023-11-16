@@ -10,6 +10,18 @@ if ($_SESSION["userLoggedIn"] !== true) {
 
 <!DOCTYPE html>
 <html lang="en">
+<title>Dashboard</title>
+
+<script>//JS TimeDisplay
+function displayTime() {
+	var TimeDisplay = document.getElementById("clock");
+	var currentTime = new Date();
+	TimeDisplay.innerHTML = currentTime.toLocaleTimeString();
+	setTimeout(displayTime, 1000);
+}
+window.onload = displayTime;
+</script>
+
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,8 +89,9 @@ if ($_SESSION["userLoggedIn"] !== true) {
     
 <div class="Main_Window">
     <p> Welcome </p>
-    <h2 class="delayAppearence"><?=$_SESSION["userEmail"]?></h2>
-    <p></p>
+    <h2 class="delayAppearence"><?=$_SESSION["userLogin"]?></h2>
+    <p><span id="clock" ></span> <!-- TimeDisplay --></p>
 </div>
+
 <div style="height:100px; width:100%; margin-top:0; background-color:#000000; background-image:url(styles/accbg.gif); color:#ffffff;"></div>
 </html>

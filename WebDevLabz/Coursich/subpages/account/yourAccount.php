@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                             color: rgb(28, 0, 184);"> Info has been changed. </div>';
     }
     if(!empty($description)) {
-        $query = "UPDATE users SET desсription=(?) WHERE id=$userID";
+        $query = "UPDATE users SET description=(?) WHERE id=$userID";
         $statement = $db->prepare($query);
         $statement->bind_param('s', $description);
         $statement->execute();
@@ -169,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 <div class="Main_Window" style="margin-top:0;">
     <h2 style="margin-top:40px; margin-bottom: 40px;">Your profile</h2>
     <center><form action="" method="post" style="width:600px; height: 100%;">
-        <p style="margin:3%;">Your nickname: <?=$_SESSION['userLogin']?>#<?=$_SESSION['userId']?></p>
+        <p style="margin:3%;">Your nickname: <?=$_SESSION["userLogin"]?>#<?=$_SESSION['userId']?></p>
         <div class="form-example">
             <label style="color: #ffffff; font-family:Share Tech Mono;" for="name">Change your nickname: </label>
             <input type="text" name="name" id="name" value=""/>

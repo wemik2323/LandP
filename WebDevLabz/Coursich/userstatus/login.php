@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 if (password_verify($real_password, $passwordDB)) {
                     $_SESSION["userLoggedIn"] = true;
                     $_SESSION["userId"] = $idBD;
-                    $_SESSION["userLogin"] = $nameBD;
+                    $_SESSION["userLogin"] = $nameDB;
                     $_SESSION["userEmail"] = $emailDB;
                     $_SESSION["userPassword"] = $passwordDB;
                     $_SESSION["userFullname"] = $fullnameDB;

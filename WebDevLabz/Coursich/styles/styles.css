@@ -54,6 +54,10 @@ p {
   display:inline-block;
   color: rgb(28, 0, 184);
 }
+#clock {
+  font-family: 'Share Tech Mono';
+  color: #ffffff;
+}
 
 
 label #btn,label #cancel{

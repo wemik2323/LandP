@@ -55,12 +55,12 @@ window.onload = displayTime;
                 <i class="fas fa-address-card"></i>
                 <span>Account</span>
             </a>
+            <a href="subpages/overview/labsoverview.php">
+                <i class="fas fa-stream"></i>
+                <span>Labs overview</span>
+            </a>
 
             <!-- IN PROGGRESS -->
-            <a href="#">
-                <i class="fas fa-stream"></i>
-                <span>Overview</span>
-            </a>
             <a href="#">
                 <i class="fas fa-calendar"></i>
                 <span>Events</span>

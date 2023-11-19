@@ -10,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     $fullname = trim($_POST['name']);
     $email = trim($_POST['email']);
-    $real_password = trim($_POST['password']);
+    $entered_password = trim($_POST['password']);
     $confirm_password = trim($_POST["confirm_password"]);
-    $password_hash = password_hash($real_password, PASSWORD_BCRYPT);
+    $password_hash = password_hash($entered_password, PASSWORD_BCRYPT);
 
     if($statement = $db->prepare("SELECT id,name,password,email FROM users WHERE email = ?")) {
         $error = '';
@@ -21,22 +21,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         // Store the result so we can check if the account exists in the database.
         $statement->store_result();
         if ($statement->num_rows > 0) {
-            $error .= '<div class="errorBar">The email address is already registered!</div>';
+            $error .= '<div class="errorBar">This user is already exists!</div>';
         } else {
             // Validate password
-            if (strlen($real_password ) < 6) {
+            if (strlen($entered_password ) < 6) {
                 $error .= '<div class="hintBar">Password must have atleast 6 characters.</div>';
             }
             // Validate confirm password
             if (empty($confirm_password)) {
                 $error .= '<div class="hintBar">Please confirm a password.</div>';
             } else {
-                if (empty($error) && ($real_password != $confirm_password)) {
+                if (empty($error) && ($entered_password != $confirm_password)) {
                     $error .= '<div class="errorBar">Password did not match.</div>';
                 }
             }
             if (empty($error) ) {
-                $InserQuery = $db->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?);");
+                $InserQuery = $db->prepare("INSERT INTO users (name, email, password, status) VALUES (?, ?, ?, 'regular');");
                 $InserQuery->bind_param("sss", $fullname, $email, $password_hash);
                 $result = $InserQuery->execute();
                 if ($result) {

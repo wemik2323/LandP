@@ -1,5 +1,6 @@
 <?php
 require_once "../config.php";
+require_once "checkFunctions.php";
 session_start();
 global $error;
 $error = '';
@@ -8,13 +9,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
-    $real_password = trim($_POST['password']);
+    $entered_password = trim($_POST['password']);
     $real_passwordVerify = trim($_POST['passwordVerify']);
     $fullname = $_POST['fullname'];
     $description = $_POST['description'];
     $userID = $_SESSION['userId'];
 
-    if(!empty($name)) {
+    $user = checkUserExists($db, $name, $email);
+    if ($user) {
+        if ($user['name'] == $name) {
+            $error = '<div style="background: rgb(104, 0, 0);
+                        border: 0.125rem solid;
+                        padding: 8px;
+                        border-radius: 10px;
+                        display:inline-block;
+                        color: rgb(184, 0, 0);">This username is already taken</div>';
+        } else if ($user['email'] == $email) {
+            $error = '<div style="background: rgb(104, 0, 0);
+                        border: 0.125rem solid;
+                        padding: 8px;
+                        border-radius: 10px;
+                        display:inline-block;
+                        color: rgb(184, 0, 0);">This email is already taken</div>';
+        }
+    }
+
+    if(!empty($name) && empty($error)) {
         $query = "UPDATE users SET name=(?) WHERE id=$userID";
         $statement = $db->prepare($query);
         $statement->bind_param('s', $name);
@@ -27,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                             display:inline-block;
                             color: rgb(28, 0, 184);"> Info has been changed. </div>';
     }
-    if(!empty($email)) {
+    if(!empty($email) && empty($error)) {
         $query = "UPDATE users SET email=(?) WHERE id=$userID";
         $statement = $db->prepare($query);
         $statement->bind_param('s', $email);
@@ -66,15 +86,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                             display:inline-block;
                             color: rgb(28, 0, 184);"> Info has been changed. </div>';
     }
-    if (!empty($real_password)) {
-        if ($real_password!=$real_passwordVerify) {
+    if (!empty($entered_password)) {
+        if ($entered_password!=$real_passwordVerify) {
             $error = '<div style="background: rgb(104, 85, 0);
                                 border: 0.125rem solid;
                                 padding: 8px;
                                 border-radius: 10px;
                                 display:inline-block;
                                 color: rgb(184, 150, 0);">Password did not match.</div>';
-        } else if (password_verify($real_password, $_SESSION['userPassword'])) {
+        } else if (password_verify($entered_password, $_SESSION['userPassword'])) {
             $error = '<div style="background: rgb(104, 85, 0);
                                 border: 0.125rem solid;
                                 padding: 8px;
@@ -82,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                                 display:inline-block;
                                 color: rgb(184, 150, 0);">This password is already in use</div>';
         } else {
-            $hashedPass = password_hash($real_password, PASSWORD_BCRYPT);
+            $hashedPass = password_hash($entered_password, PASSWORD_BCRYPT);
             $query = "UPDATE users SET password=(?) WHERE id=$userID";
             $statement = $db->prepare($query);
             $statement->bind_param('s', $hashedPass);
@@ -134,12 +154,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 <i class="fas fa-address-card"></i>
                 <span>Account</span>
             </a>
-
-            <!-- IN PROGGRESS -->
-            <a href="#">
+            <a href="../overview/labsoverview.php">
                 <i class="fas fa-stream"></i>
-                <span>Overview</span>
+                <span>Labs overview</span>
             </a>
+            
+            <!-- IN PROGGRESS -->
             <a href="#">
                 <i class="fas fa-calendar"></i>
                 <span>Events</span>

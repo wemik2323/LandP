@@ -7,7 +7,7 @@ $error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     $email = trim($_POST['email']);
-    $real_password = trim($_POST['password']);
+    $entered_password = trim($_POST['password']);
 
     // validate if email is empty
     if (empty($email)) {
@@ -15,20 +15,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 
     // validate if password is empty
-    if (empty($real_password)) {
+    if (empty($entered_password)) {
         $error .= '<div class="hintBar">Please enter your password.</div>';
     }
 
     if (empty($error)) {
-        $query = "SELECT * FROM users WHERE email = (?)";
+        $query = "SELECT id, name, password, email, fullname, description, status FROM users WHERE email = (?)";
         if($statement = $db->prepare($query)) {
             $statement->bind_param('s', $email);
             $statement->execute();
-            $statement->bind_result($idBD, $nameDB, $passwordDB, $emailDB, $fullnameDB, $descriptionDB);
+            $statement->bind_result($idBD, $nameDB, $passwordDB, $emailDB, $fullnameDB, $descriptionDB, $status);
             $statement->fetch();
             // echo $nameDB;
             if ($emailDB==$email) { 
-                if (password_verify($real_password, $passwordDB)) {
+                if (password_verify($entered_password, $passwordDB)) {
                     $_SESSION["userLoggedIn"] = true;
                     $_SESSION["userId"] = $idBD;
                     $_SESSION["userLogin"] = $nameDB;
@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     $_SESSION["userPassword"] = $passwordDB;
                     $_SESSION["userFullname"] = $fullnameDB;
                     $_SESSION["userDescription"] = $descriptionDB;
+                    $_SESSION["userStatus"] = $status;
                     // Redirect the user to welcome page
                     header("location: ../welcome.php");
                     exit;

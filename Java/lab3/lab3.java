@@ -22,11 +22,11 @@ import java.util.concurrent.TimeUnit;
 public class lab3 {
     public static void main(String[] args) throws InterruptedException, ParseException {
         Scanner systemIn = new Scanner(System.in);
-        String pathF = "C:/Users/Taiks/repositories/LandP/Java/lab3/f.txt";
-        String pathN = "C:/Users/Taiks/repositories/LandP/Java/lab3/n.txt";
-        String pathG = "C:/Users/Taiks/repositories/LandP/Java/lab3/g.txt";
-        String pathFootball = "C:/Users/Taiks/repositories/LandP/Java/lab3/football.txt";
-        String pathLess20 = "C:/Users/Taiks/repositories/LandP/Java/lab3/less20.txt";
+        String pathF = "f.txt";
+        String pathN = "n.txt";
+        String pathG = "g.txt";
+        String pathFootball = "football.txt";
+        String pathLess20 = "less20.txt";
 
         while(true) {
             menuOutput();

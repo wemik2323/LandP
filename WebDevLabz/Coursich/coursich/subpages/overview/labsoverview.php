@@ -1,4 +1,5 @@
 <?php
+require_once "../config.php";
 // start the session
 session_start();
 // Check if the user is not logged in, then redirect the user to login page
@@ -26,7 +27,7 @@ if (isset($_FILES['file'])) {
     }
 }
 
-/** List Loaded Files **/
+/** List Loaded Files DATE_NAME_TYPE **/
 //Read directory
 if ($_SESSION['userStatus'] == 'donated' || $_SESSION['userStatus'] == 'admin') {
     $dh = opendir('uploads/');
@@ -182,7 +183,17 @@ if ($_SESSION['userStatus'] == 'admin') {
         <ul id="files">
             <?php 
                 if (isset($_POST['donate'])) {
-                    echo 'WHAT NOW?????';
+                    ?> <script>alert("Я как будто бы получил деньги... Но у меня нет ИНН и организации с сотрудниками и налогами >:')");</script><?php
+
+                    //Это произойдет после выполнения запроса в SperEquaring и получения чека
+                    //.... $response = curl_exec($myCurl); curl_close($myCurl); ....
+                    // + запись в бд с услугами donates с историей платы и ссылками на чек и т.д....
+
+                    $userId = $_SESSION['userId'];
+                    $query = "UPDATE users SET status='donated' WHERE id=$userId";
+                    $statement = $db->prepare($query);
+                    $statement->execute();
+                    $_SESSION['userStatus'] = 'donated';
                 } 
                 echo $uploaded_files; 
             ?>

@@ -40,26 +40,28 @@ public class lab4 {
                     }
                 }
             }
-        } else if (args[0] == "-h" || args[0] == "--help") {
+        } else if (args[0].equals("-h") || args[0].equals("help")) {
             System.out.println("Для выполнения программы выполните следующие условия:");
             System.out.println("1. Программа должна считывать текстовый файл первым аргументом.");
             System.out.println("2. Последующие аргументы должны быть в формате \"CSV\" или \"JSON\".");
             System.out.println("3. Можно указывать несколько файлов вывода в разном порядке.");
             System.out.println("4. Можно использовать флаг \"-r\" или \"remove\" для того чтобы удалить все созданные файлы.");
             return;
-        } else if (args[0] == "-r" || args[0] == "--remove") {
+        } else if (args[0].equals("-r") || args[0].equals("remove")) {
             File file = new File("");
-            File folder = new File();
+            File folder = new File(file.getAbsolutePath());
             File fList[] = folder.listFiles();
-            // Searchs .lck
             for (int i = 0; i < fList.length; i++) {
-                String pes = fList.get(i);
-                if (pes.contains(".lck") == true) {
-                    // and deletes
-                    boolean success = (new File(fList.get(i)).delete());
+                File pes = fList[i];
+                if (pes.getName().endsWith(".csv") || pes.getName().endsWith(".json")) {
+                    fList[i].delete();
                 }
             }
+
+            System.out.println("Работа программы успешно завершена. Файлы удалены.");
+            return;
         } else {
+            System.out.println(args[0]);
             System.out.println("Передайте файл формата \"TXT\" для работы программы.");
             return;
         }

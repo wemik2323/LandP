@@ -39,7 +39,7 @@
             "request": "launch",
             "mainClass": "Java.lab4.lab4",
             "projectName": "LandP_1e0c1948",
-            "args": "test.txt test.csv test1.csv test2.json",
+            "args": "-r",
             "cwd": "${fileDirname}"
         },
     ]

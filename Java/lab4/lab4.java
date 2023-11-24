@@ -62,7 +62,7 @@ public class lab4 {
             return;
         } else {
             System.out.println(args[0]);
-            System.out.println("Передайте файл формата \"TXT\" для работы программы.");
+            System.out.println("Неверные аргументы.");
             return;
         }
         System.out.println("Работа программы успешно завершена.");

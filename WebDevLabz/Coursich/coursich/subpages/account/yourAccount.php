@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = trim($_POST['email']);
     $entered_password = trim($_POST['password']);
     $real_passwordVerify = trim($_POST['passwordVerify']);
-    $fullname = $_POST['fullname'];
+    $nickname = $_POST['fullname'];
     $description = $_POST['description'];
     $userID = $_SESSION['userId'];
 
@@ -60,12 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                             display:inline-block;
                             color: rgb(28, 0, 184);"> Info has been changed. </div>';
     }
-    if(!empty($fullname)) {
+    if(!empty($nickname)) {
         $query = "UPDATE users SET fullname=(?) WHERE id=$userID";
         $statement = $db->prepare($query);
-        $statement->bind_param('s', $fullname);
+        $statement->bind_param('s', $nickname);
         $statement->execute();
-        $_SESSION['userFullname'] = $fullname;
+        $_SESSION['userFullname'] = $nickname;
         $error = '<div style="background: rgb(28, 0, 104);
                             border: 0.125rem solid;
                             padding: 8px;

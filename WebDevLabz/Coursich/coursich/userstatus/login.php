@@ -24,13 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if($statement = $db->prepare($query)) {
             $statement->bind_param('s', $email);
             $statement->execute();
-            $statement->bind_result($idBD, $nameDB, $passwordDB, $emailDB, $fullnameDB, $descriptionDB, $status);
+            $statement->bind_result($idDB, $nameDB, $passwordDB, $emailDB, $fullnameDB, $descriptionDB, $status);
             $statement->fetch();
             // echo $nameDB;
             if ($emailDB==$email) { 
                 if (password_verify($entered_password, $passwordDB)) {
                     $_SESSION["userLoggedIn"] = true;
-                    $_SESSION["userId"] = $idBD;
+                    $_SESSION["userId"] = $idDB;
                     $_SESSION["userLogin"] = $nameDB;
                     $_SESSION["userEmail"] = $emailDB;
                     $_SESSION["userPassword"] = $passwordDB;

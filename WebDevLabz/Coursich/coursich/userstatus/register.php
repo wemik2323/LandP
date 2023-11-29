@@ -4,19 +4,18 @@ require_once "../subpages/config.php";
 require_once "../subpages/session.php";
 global $error, $success;
 
-// $error = '<div class="successBar">Password must contain at least 6 character</div>';
 $success = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
-    $fullname = trim($_POST['name']);
+    $nickname = trim($_POST['name']);
     $email = trim($_POST['email']);
     $entered_password = trim($_POST['password']);
     $confirm_password = trim($_POST["confirm_password"]);
     $password_hash = password_hash($entered_password, PASSWORD_BCRYPT);
 
-    if($statement = $db->prepare("SELECT id,name,password,email FROM users WHERE email = ?")) {
+    if($statement = $db->prepare("SELECT * FROM users WHERE email = ? OR name = ?")) {
         $error = '';
-        $statement->bind_param('s', $email);
+        $statement->bind_param('ss', $email, $nickname);
         $statement->execute();
         // Store the result so we can check if the account exists in the database.
         $statement->store_result();
@@ -37,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             }
             if (empty($error) ) {
                 $InserQuery = $db->prepare("INSERT INTO users (name, email, password, status) VALUES (?, ?, ?, 'regular');");
-                $InserQuery->bind_param("sss", $fullname, $email, $password_hash);
+                $InserQuery->bind_param("sss", $nickname, $email, $password_hash);
                 $result = $InserQuery->execute();
                 if ($result) {
                     $error .= '<div class="successBar">Your registration was successful! Redirecting...</div>';

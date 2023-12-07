@@ -1,7 +1,10 @@
 package Java.lab4;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 // CSV -> 1, 2, 3, 4, 5, 6, 7
 //word, frequency, frequency%, mostFrequentWord, MostFrequentWordAmount, MostRareWord, MostRareWordAmount
@@ -46,6 +50,7 @@ public class lab4 {
             System.out.println("2. Последующие аргументы должны быть в формате \"CSV\" или \"JSON\".");
             System.out.println("3. Можно указывать несколько файлов вывода в разном порядке.");
             System.out.println("4. Можно использовать флаг \"-r\" или \"remove\" для того чтобы удалить все созданные файлы.");
+            System.out.println("5. Можно использовать флаг \"-o\" или \"open\" для вывода файла на экран.");
             return;
         } else if (args[0].equals("-r") || args[0].equals("remove")) {
             File file = new File("");
@@ -60,6 +65,25 @@ public class lab4 {
 
             System.out.println("Работа программы успешно завершена. Файлы удалены.");
             return;
+        } else if (args[0].equals("-o") || args[0].equals("open")) {
+            if (args[1] == null) {
+                System.out.println("Введите название файла для открытия.");
+                return;
+            }
+            File file = new File(args[1]);
+            if (file.exists()) {
+                try (BufferedReader br = new BufferedReader(new FileReader(args[1]))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                } catch (FileNotFoundException e) {
+                    System.out.println("Данного файла не существует.");
+                    return;
+                } catch (IOException e) {
+                    e.getMessage();
+                }
+            }
         } else {
             System.out.println(args[0]);
             System.out.println("Неверные аргументы.");

@@ -110,7 +110,10 @@ public class lab3 {
             TimeUnit.SECONDS.sleep(1);
             return;
         } catch (IOException e) {
-            e.getMessage();
+            System.out.println("Файл неверный");
+        } catch (NumberFormatException e) {
+            System.out.println("Файл содержит не числа!");
+            TimeUnit.SECONDS.sleep(1);
         }
     }
 

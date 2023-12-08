@@ -14,12 +14,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 // CSV -> 1, 2, 3, 4, 5, 6, 7
 //word, frequency, frequency%, mostFrequentWord, MostFrequentWordAmount, MostRareWord, MostRareWordAmount
 
-public class lab4 {
+public class lab4{
     public static HashMap<Character, Float> mapChars;
     public static HashMap<String, Float> mapWords;
     public static float amountOfChars;
@@ -27,30 +26,11 @@ public class lab4 {
         if (args.length == 0) {
             System.out.println("Введите минимум один аргумент!");
             return;
-        }
-        if (args.length > 0 && args[0].indexOf(".txt") != -1) {
-            float amountOfWords = 0;
-            lab4.mapWords = new HashMap<String, Float>();
-            lab4.mapChars = new HashMap<Character, Float>();
-            amountOfWords = makeHashMaps(args[0], (int)amountOfWords);
-            LinkedHashMap<String, Float> sortedMap = makeSortedMap();
-            for (String filename: args) {
-                if (filename.indexOf(".txt") == -1) {
-                    if (filename.indexOf(".csv") != -1) {
-                        makeCsvFile(sortedMap, (int)amountOfWords, filename);
-                    }
-                    if (filename.indexOf(".json")!= -1) {
-                        makeJsonFile(sortedMap, (int)amountOfWords, filename);
-                    }
-                }
-            }
         } else if (args[0].equals("-h") || args[0].equals("help")) {
             System.out.println("Для выполнения программы выполните следующие условия:");
-            System.out.println("1. Программа должна считывать текстовый файл первым аргументом.");
-            System.out.println("2. Последующие аргументы должны быть в формате \"CSV\" или \"JSON\".");
-            System.out.println("3. Можно указывать несколько файлов вывода в разном порядке.");
-            System.out.println("4. Можно использовать флаг \"-r\" или \"remove\" для того чтобы удалить все созданные файлы.");
-            System.out.println("5. Можно использовать флаг \"-o\" или \"open\" для вывода файла на экран.");
+            System.out.println("* Программа должна считывать хотя бы один текстовый файл. Текстовые файлы передаются аргументами.");
+            System.out.println("* Можно использовать флаг \"-r\" или \"remove\" для того чтобы удалить все созданные файлы.");
+            System.out.println("* Можно использовать флаг \"-o\" или \"open\" для вывода файла на экран.");
             return;
         } else if (args[0].equals("-r") || args[0].equals("remove")) {
             File file = new File("");
@@ -66,24 +46,49 @@ public class lab4 {
             System.out.println("Работа программы успешно завершена. Файлы удалены.");
             return;
         } else if (args[0].equals("-o") || args[0].equals("open")) {
-            if (args[1] == null) {
+            if (args.length < 2) {
                 System.out.println("Введите название файла для открытия.");
                 return;
             }
-            File file = new File(args[1]);
-            if (file.exists()) {
-                try (BufferedReader br = new BufferedReader(new FileReader(args[1]))) {
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        System.out.println(line);
+            for (int i = 1; i < args.length; i++) {
+                File file = new File(args[i]);
+                if (file.exists()) {
+                    try (BufferedReader br = new BufferedReader(new FileReader(args[i]))) {
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            System.out.println(line);
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println("Данного файла не существует.");
+                        return;
+                    } catch (IOException e) {
+                        e.getMessage();
                     }
-                } catch (FileNotFoundException e) {
-                    System.out.println("Данного файла не существует.");
-                    return;
-                } catch (IOException e) {
-                    e.getMessage();
                 }
+                System.out.println(args[i]);
             }
+            return;
+        } else if (args.length > 0) {
+            File json = new File("out.json");
+            if (json.exists()) {json.delete(); json.createNewFile();}
+            BufferedWriter jsonWriter = new BufferedWriter(new FileWriter(json, true));
+            jsonWriter.write("{\n");
+            int i = 1;
+            for (String filename: args) {
+                boolean comma = true;
+                if (filename == args[args.length - 1]) {comma = false;}
+                float amountOfWords = 0;
+                lab4.mapWords = new HashMap<String, Float>();
+                lab4.mapChars = new HashMap<Character, Float>();
+                amountOfWords = makeHashMaps(filename, (int)amountOfWords);
+                LinkedHashMap<String, Float> sortedMap = makeSortedMap();
+                makeCsvFile(sortedMap, (int)amountOfWords, filename);
+                jsonWriter.write("    \"file" + i + "\":");
+                makeJsonFile(sortedMap, (int)amountOfWords, filename, jsonWriter, comma);
+                i++;
+            }
+            jsonWriter.write("}\n");
+            jsonWriter.close();
         } else {
             System.out.println(args[0]);
             System.out.println("Неверные аргументы.");
@@ -183,26 +188,26 @@ public class lab4 {
         return sortedMap;
     }
 
-    static void makeCsvFile(LinkedHashMap<String, Float> sortedMap, int amountOfWords, String File) throws IOException {
-        BufferedWriter csvWriter = new BufferedWriter(new FileWriter(File));
+    static void makeCsvFile(LinkedHashMap<String, Float> sortedMap, int amountOfWords, String file) throws IOException {
+        file = file.split(".txt")[0] + ".csv";
+        BufferedWriter csvWriter = new BufferedWriter(new FileWriter(file));
         csvWriter.write("word;frequency;frequency%;mostFrequentWord;MostFrequentWordAmount;MostRareWord;MostRareWordAmount;\n");
         boolean flag = true;
         for (String key : sortedMap.keySet()) {
             if (flag) {
-                csvWriter.write(key + ";" + sortedMap.get(key) + ";" + sortedMap.get(key) * 100 / amountOfWords + ";" + getMaxKeyWord(sortedMap) + ";" +
+                csvWriter.write(key + ";" + sortedMap.get(key) / amountOfWords + ";" + sortedMap.get(key) * 100 / amountOfWords + ";" + getMaxKeyWord(sortedMap) + ";" +
                 Collections.max(sortedMap.values()) + ";" + getMinKeyWord(sortedMap) + ";" + Collections.min(sortedMap.values()) + "\n");
 
                 flag = false;
                 continue;
             }
-            csvWriter.write(key + ";" + sortedMap.get(key) + ";" + sortedMap.get(key) * 100 / amountOfWords + "\n");
+            csvWriter.write(key + ";" + sortedMap.get(key) / amountOfWords + ";" + sortedMap.get(key) * 100 / amountOfWords + "\n");
         }
         csvWriter.close();
         return;
     }
 
-    static void makeJsonFile(LinkedHashMap<String, Float> sortedMap, int amountOfWords, String filename) throws IOException {
-        BufferedWriter jsonWriter = new BufferedWriter(new FileWriter(filename));
+    static void makeJsonFile(LinkedHashMap<String, Float> sortedMap, int amountOfWords, String filename,BufferedWriter jsonWriter, boolean comma) throws IOException {
         String tab = "    ";
         jsonWriter.write("{\n");
         jsonWriter.write(tab + "\"name\": " + "\"" + filename + "\",\n");
@@ -223,11 +228,8 @@ public class lab4 {
         jsonWriter.write(tab + tab + "\"word\": " + "\"" + getMinKeyWord(sortedMap) + "\",\n");
         jsonWriter.write(tab + tab + "\"amount\": " + Collections.min(sortedMap.values()) + "\n");
         jsonWriter.write(tab + tab + "}\n");
-
-
-
-        jsonWriter.write("}");
-        jsonWriter.close();
+        jsonWriter.write(tab + "}");
+        if (comma) {jsonWriter.write(",\n");} else {jsonWriter.write("\n");}
         return;
     }
 }

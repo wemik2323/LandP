@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "MainClass",
+            "request": "launch",
+            "mainClass": "Java.lab4.MainClass",
+            "projectName": "LandP_1e0c1948"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
@@ -36,7 +43,7 @@
             "request": "launch",
             "mainClass": "Java.lab4.lab4",
             "projectName": "LandP_1e0c1948",
-            "args": "help",
+            "args": "-r",
             "cwd": "${fileDirname}"
         },
         {

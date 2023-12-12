@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "lab5",
+            "request": "launch",
+            "mainClass": "Java.lab5.lab5",
+            "projectName": "LandP_1e0c1948"
+        },
+        {
+            "type": "java",
             "name": "MainClass",
             "request": "launch",
             "mainClass": "Java.lab4.MainClass",

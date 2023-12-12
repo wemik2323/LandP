@@ -1,10 +1,11 @@
-package Java.lab5;
+package wemik2323;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class lab5 {
-    public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         Scanner systemIn = new Scanner(System.in);
         ArrayList<Appliances> arrAppliances = new ArrayList<Appliances>();
         int amountOfAppliances = 0;
@@ -80,21 +81,25 @@ public class lab5 {
             if (device instanceof Freezer) {
                 cleanScreen();
                 System.out.println("Холодильник: " + ((Freezer) device).getModelName() + " от компании: " + ((Freezer) device).getBrandName());
+                ((Freezer)device).outputCurrentStatus();
+                ((Freezer)device).outputCurrentMode();
             } else if (device instanceof Washer) {
                 cleanScreen();
                 System.out.println("Стиральная машина: " + ((Washer) device).getModelName() + " от компании: " + ((Washer) device).getBrandName());
+                ((Washer)device).outputCurrentStatus();
+                ((Washer)device).outputCurrentMode();
             } else if (device instanceof Dishwasher) {
                 cleanScreen();
                 System.out.println("Посудомоечная машина: " + ((Dishwasher) device).getModelName() + " от компании: " + ((Dishwasher) device).getBrandName());
+                ((Dishwasher)device).outputCurrentStatus();
+                ((Dishwasher)device).outputCurrentMode();
             }
+            System.out.println("----------Выберите действие----------");
             if (device.oi == 1) {
-                device.outputCurrentStatus();
-                device.outputCurrentMode();
-                System.out.println("----------Выберите действие----------");
                 System.out.println("1.Выключить устройство");
                 System.out.println("2.Сменить режим работы");
                 if (device instanceof Freezer) {
-                    System.out.println("3.Имитация загрузки холодильника");
+                    System.out.println("3.XXXXXXXXXXXXXXX");
                 } else if (device instanceof Washer && ((Washer)device).start == 0) {
                     System.out.println("3.Начать стирку");
                 } else if (device instanceof Washer && ((Washer)device).start != 0) {
@@ -103,9 +108,6 @@ public class lab5 {
                     System.out.println("3.Начать мойку");
                 } else if (device instanceof Dishwasher && ((Dishwasher)device).start != 0) {
                     System.out.println("3.Синхронизировать мойку");
-                }
-                if (device instanceof Freezer) {
-                    System.out.println("4.Имитация разгрузки холодильника");
                 }
                 System.out.println("0.Выход");
                 int choice = readInt(systemIn);
@@ -118,35 +120,20 @@ public class lab5 {
                         chooseMode(device, systemIn);
                         break;
                     case 3:
-                        if (device instanceof Freezer) {
-                            cleanScreen();
-                            System.out.println("Введите количество продуктов для загрузки: ");
-                            int amount = readInt(systemIn);
-                            ((Freezer)device).giveProducts(amount, systemIn);
-                            break;
-                        }
+                        if (device instanceof Freezer) {break;}
                         if (device instanceof Washer) {
-                            ((Washer) device).startCleaning(System.currentTimeMillis()/1000, systemIn);
+                            ((Washer) device).startCleaning(System.currentTimeMillis()/1000);
                         }
                         if (device instanceof Dishwasher) {
-                            ((Dishwasher) device).startCleaning(System.currentTimeMillis()/1000, systemIn);
+                            ((Dishwasher) device).startCleaning(System.currentTimeMillis()/1000);
                         }
                         break;
-                    case 4:
-                        if (device instanceof Freezer) {
-                            cleanScreen();
-                            System.out.println("Введите количество продуктов для разгрузки: ");
-                            int amount = readInt(systemIn);
-                            ((Freezer)device).takeProducts(amount);
-                            break;
-                        }
                     case 0:
                         return;
                     default:
                         break;
                 }
             } else if (device.oi == 0) {
-                System.out.println("----------Выберите действие----------");
                 System.out.println("1.Включить устройство");
                 System.out.println("0.Выход");
                 int choice = readInt(systemIn);
@@ -197,7 +184,7 @@ public class lab5 {
         }
     }
 
-    static void makeAppliances(Scanner systemIn, ArrayList<Appliances> arrAppliances, int choice) {
+    static void makeAppliances(Scanner systemIn, ArrayList<Appliances> arrAppliances, int choice) throws UnsupportedEncodingException {
         cleanScreen();
         if (choice == 1) {
             System.out.println("Введите название модели: ");

@@ -1,7 +1,6 @@
-package Java.lab5;
-
+package wemik2323;
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
-import java.util.Scanner;
 
 public abstract class Appliances {
     private String UUID;
@@ -9,7 +8,7 @@ public abstract class Appliances {
     protected String brandName;
     protected int oi = 0;
 
-    public Appliances(String modelName, String brandName) {
+    public Appliances(String modelName, String brandName) throws UnsupportedEncodingException {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         String randomString = "";
         Random rand = new Random();
@@ -60,20 +59,5 @@ public abstract class Appliances {
     }
     public void setOi(int mode) {
         this.oi = mode;
-    }
-    
-    static void pressEnterToContinue(Scanner systemIn)
-    { 
-        System.out.println("\nНажмите Enter чтобы продолжить...");
-        try {
-            System.in.read();
-            systemIn.nextLine();
-        } catch(Exception e) {
-            e.getMessage();
-        }  
-    }
-
-    static void cleanScreen() {
-        System.out.printf("\033[2J");
     }
 }

@@ -1,20 +1,16 @@
-package Java.lab5;
+package wemik2323;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.io.UnsupportedEncodingException;
 
 public class Dishwasher extends Appliances {
     long start;
-    int loaded;
     int mode;
     int status;
     String[] statuses = {"Ожидает","Моет","Смывает"};
     String[] modes = {"Автоматическая","Обычная","Деликатная","Экспресс","Спокойной ночи","Ополаскивание"};
 
-    public Dishwasher(String modelName, String brandName) {
+    public Dishwasher(String modelName, String brandName) throws UnsupportedEncodingException {
         super(modelName, brandName);
-        Random rand = new Random();
-        this.loaded = rand.nextInt(3);
         this.status = 0;
     }
     
@@ -22,7 +18,6 @@ public class Dishwasher extends Appliances {
         if (this.oi == 1) {
             System.out.println("Устройство включено.");
             System.out.println("Текущий статус: " + statuses[this.status]);
-            outputCurrentLoad();
         } else {
             System.out.println("Устройство выключено.");
         }
@@ -32,10 +27,6 @@ public class Dishwasher extends Appliances {
         System.out.println("Текущий режим: " + modes[this.mode]);
     }
 
-    public void outputCurrentLoad() {
-        System.out.println("Текущее количество ресурсов: " + this.loaded);
-    }
-
     public void outputAllModes() {
         for (int i = 0; i < modes.length; i++) {
             System.out.println(i+1 + ". " + modes[i]);
@@ -43,7 +34,7 @@ public class Dishwasher extends Appliances {
     }
 
     public int changeMode(int choice) {
-        if (choice > this.modes.length || choice <= 0) {
+        if (choice > this.modes.length || choice < 0) {
             return -1;
         } else {
             this.mode = choice - 1;
@@ -51,23 +42,15 @@ public class Dishwasher extends Appliances {
         }
     }
 
-    public void startCleaning(long currentTimeSeconds, Scanner systemIn) {
-        if (this.loaded >= 0) {
-            if (this.status == 0 && this.loaded > 0) {
-                this.start = System.currentTimeMillis()/1000;
-                this.status = 1;
-                this.loaded -= 1;
-            } else if (currentTimeSeconds - this.start < 10) {
-                this.status = 2;
-            } else if (currentTimeSeconds - this.start < 20) {
-                this.status = 0;
-                this.start = 0;
-            } else {
-                cleanScreen();
-                System.out.println("Нет ресурсов для начала мойки!");
-                pressEnterToContinue(systemIn);
-            }
+    public void startCleaning(long currentTimeSeconds) {
+        if (this.status == 0) {
+            this.start = System.currentTimeMillis()/1000;
+            this.status = 1;
+        } else if (currentTimeSeconds - this.start < 10) {
+            this.status = 2;
+        } else if (currentTimeSeconds - this.start < 20) {
+            this.status = 0;
+            this.start = 0;
         }
     }
-    
 }

@@ -1,0 +1,23 @@
+{
+  "arrAppliances": [
+    {
+      "loaded": 8,
+      "mode": 0,
+      "status": 0,
+      "statuses": [
+        "Охлаждает",
+        "Замораживает",
+        "Размораживает"
+      ],
+      "modes": [
+        "Обычный",
+        "Заморозка",
+        "Разморозка"
+      ],
+      "UUID": "x780OTXZ",
+      "modelName": "dlaffadk",
+      "brandName": "dafkjfjk;lda",
+      "oi": 0
+    }
+  ]
+}

@@ -402,3 +402,111 @@
 [INFO ] 2023-12-14 01:46:49.189 [main] Main - Entered MAIN MENU
 [INFO ] 2023-12-14 01:46:49.190 [main] Main - MAIN MENU showed up
 [INFO ] 2023-12-14 01:46:51.825 [main] Main - User have chosen //8
+[INFO ] 2023-12-14 13:40:49.200 [main] Main - Programm started
+[INFO ] 2023-12-14 13:40:49.209 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:40:49.209 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:40:51.322 [main] Main - User have chosen //2
+[INFO ] 2023-12-14 13:40:51.322 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 13:40:52.911 [main] Main - Washer device connected
+[INFO ] 2023-12-14 13:40:52.911 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:40:52.911 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:40:53.843 [main] Main - User have chosen //4
+[INFO ] 2023-12-14 13:40:53.843 [main] Main - Listing Appliances
+[INFO ] 2023-12-14 13:40:57.182 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:40:57.182 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:40:57.845 [main] Main - User have chosen //2
+[INFO ] 2023-12-14 13:40:57.845 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 13:40:59.498 [main] Main - Washer device connected
+[INFO ] 2023-12-14 13:40:59.498 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:40:59.498 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:41:01.383 [main] Main - User have chosen //4
+[INFO ] 2023-12-14 13:41:01.383 [main] Main - Listing Appliances
+[INFO ] 2023-12-14 13:41:03.362 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:41:03.362 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:41:05.860 [main] Main - User have chosen //7
+[INFO ] 2023-12-14 13:41:05.902 [main] Main - Json file written
+[INFO ] 2023-12-14 13:41:07.681 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:41:07.681 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:41:09.560 [main] Main - Programm ended
+[INFO ] 2023-12-14 13:42:30.525 [main] Main - Programm started
+[INFO ] 2023-12-14 13:42:30.534 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:42:30.535 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:42:34.293 [main] Main - User have chosen //8
+[INFO ] 2023-12-14 13:44:28.814 [main] Main - Programm started
+[INFO ] 2023-12-14 13:44:28.821 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:44:28.822 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:44:30.923 [main] Main - User have chosen //8
+[INFO ] 2023-12-14 13:51:55.015 [main] Main - Programm started
+[INFO ] 2023-12-14 13:51:55.024 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:51:55.024 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:51:56.631 [main] Main - User have chosen //2
+[INFO ] 2023-12-14 13:51:56.632 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 13:51:57.982 [main] Main - Washer device connected
+[INFO ] 2023-12-14 13:51:57.982 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:51:57.982 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:51:58.670 [main] Main - User have chosen //1
+[INFO ] 2023-12-14 13:51:58.670 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 13:52:00.142 [main] Main - Freezer device connected
+[INFO ] 2023-12-14 13:52:00.142 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:52:00.142 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:52:01.514 [main] Main - User have chosen //4
+[INFO ] 2023-12-14 13:52:01.514 [main] Main - Listing Appliances
+[INFO ] 2023-12-14 13:52:04.451 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:52:04.451 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:52:07.104 [main] Main - User have chosen //7
+[INFO ] 2023-12-14 13:52:07.144 [main] Main - Json file written
+[INFO ] 2023-12-14 13:52:09.237 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:52:09.237 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:52:10.569 [main] Main - Programm ended
+[INFO ] 2023-12-14 13:55:40.711 [main] Main - Programm started
+[INFO ] 2023-12-14 13:55:40.718 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:55:40.718 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:55:44.187 [main] Main - User have chosen //1
+[INFO ] 2023-12-14 13:55:44.187 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 13:55:45.744 [main] Main - Freezer device connected
+[INFO ] 2023-12-14 13:55:45.744 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:55:45.744 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:55:47.040 [main] Main - User have chosen //2
+[INFO ] 2023-12-14 13:55:47.040 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 13:55:48.435 [main] Main - Washer device connected
+[INFO ] 2023-12-14 13:55:48.435 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:55:48.435 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:55:49.450 [main] Main - User have chosen //4
+[INFO ] 2023-12-14 13:55:49.450 [main] Main - Listing Appliances
+[INFO ] 2023-12-14 13:55:51.641 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:55:51.641 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:55:54.309 [main] Main - User have chosen //7
+[INFO ] 2023-12-14 13:55:54.348 [main] Main - Json file written
+[INFO ] 2023-12-14 13:55:55.801 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:55:55.801 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:55:56.943 [main] Main - Programm ended
+[INFO ] 2023-12-14 13:59:49.177 [main] Main - Programm started
+[INFO ] 2023-12-14 13:59:49.185 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 13:59:49.185 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 13:59:53.011 [main] Main - User have chosen //8
+[INFO ] 2023-12-14 14:01:48.289 [main] Main - Programm started
+[INFO ] 2023-12-14 14:01:48.296 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 14:01:48.296 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 14:01:50.859 [main] Main - User have chosen //2
+[INFO ] 2023-12-14 14:01:50.859 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 14:01:52.348 [main] Main - Washer device connected
+[INFO ] 2023-12-14 14:01:52.348 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 14:01:52.348 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 14:01:54.710 [main] Main - User have chosen //1
+[INFO ] 2023-12-14 14:01:54.710 [main] Main - Connecting new Appliance
+[INFO ] 2023-12-14 14:01:56.015 [main] Main - Freezer device connected
+[INFO ] 2023-12-14 14:01:56.015 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 14:01:56.015 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 14:01:56.733 [main] Main - User have chosen //4
+[INFO ] 2023-12-14 14:01:56.733 [main] Main - Listing Appliances
+[INFO ] 2023-12-14 14:01:58.514 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 14:01:58.514 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 14:02:01.121 [main] Main - User have chosen //7
+[INFO ] 2023-12-14 14:02:01.160 [main] Main - Json file written
+[INFO ] 2023-12-14 14:02:02.916 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 14:02:02.916 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 14:02:04.241 [main] Main - Programm ended
+[INFO ] 2023-12-14 14:02:16.758 [main] Main - Programm started
+[INFO ] 2023-12-14 14:02:16.766 [main] Main - Entered MAIN MENU
+[INFO ] 2023-12-14 14:02:16.767 [main] Main - MAIN MENU showed up
+[INFO ] 2023-12-14 14:02:24.406 [main] Main - User have chosen //8

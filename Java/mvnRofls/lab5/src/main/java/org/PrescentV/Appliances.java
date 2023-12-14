@@ -23,6 +23,13 @@ public abstract class Appliances {
         this.brandName = null;
         this.oi = 0;
     }
+
+    public Appliances(String UUID,String modelName, String brandName, int oi) {
+        this.UUID = UUID;
+        this.modelName = modelName;
+        this.brandName = brandName;
+        this.oi = oi;
+    }
     public Appliances(String modelName, String brandName) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         String randomString = "";

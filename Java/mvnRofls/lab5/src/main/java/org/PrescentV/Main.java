@@ -2,6 +2,7 @@ package org.PrescentV;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.google.gson.GsonBuilder;
@@ -13,7 +14,9 @@ public class Main {
     public static void main(String[] args) {
         logger.info("Programm started");
         Scanner systemIn = new Scanner(System.in);
-        Devicelist List = new Devicelist();
+//        DeviceList List = new DeviceList();
+        ArrayList<Appliances> arrAppliances = new ArrayList<>();
+        
         int amountOfAppliances = 0;
 
         while(true) {
@@ -24,39 +27,39 @@ public class Main {
             switch (choice) {
                 case (1) :
                     logger.info("User have chosen //1");
-                    makeAppliances(systemIn, List.arrAppliances, choice);
+                    makeAppliances(systemIn, arrAppliances, choice);
                     amountOfAppliances++;
                     break;
                 case (2) :
                     logger.info("User have chosen //2");
-                    makeAppliances(systemIn, List.arrAppliances, choice);
+                    makeAppliances(systemIn, arrAppliances, choice);
                     amountOfAppliances++;
                     break;
                 case (3) :
                     logger.info("User have chosen //3");
-                    makeAppliances(systemIn, List.arrAppliances, choice);
+                    makeAppliances(systemIn, arrAppliances, choice);
                     amountOfAppliances++;
                     break;
                 case (4) :
                     logger.info("User have chosen //4");
-                    showArrAppliances(List.arrAppliances, systemIn, amountOfAppliances);
+                    showArrAppliances(arrAppliances, systemIn, amountOfAppliances);
                     pressEnterToContinue(systemIn);
                     break;
                 case (5) :
                     logger.info("User have chosen //5");
-                    amountOfAppliances = deleteAppliances(systemIn, List.arrAppliances, amountOfAppliances);
+                    amountOfAppliances = deleteAppliances(systemIn, arrAppliances, amountOfAppliances);
                     break;
                 case (6) :
                     logger.info("User have chosen //6");
-                    chooseDevice(systemIn, amountOfAppliances, List.arrAppliances);
+                    chooseDevice(systemIn, amountOfAppliances, arrAppliances);
                     break;
                 case (7) :
                     logger.info("User have chosen //7");
-                    writeJson(List, systemIn);
+                    writeJson(arrAppliances, systemIn);
                     break;
                 case (8) :
                     logger.info("User have chosen //8");
-                    List = readJson(systemIn);
+                    arrAppliances = readJson(systemIn);
                     break;
                 case (0) :
                     logger.info("Programm ended");
@@ -323,7 +326,7 @@ public class Main {
         return amountOfAppliances;
     }
 
-    public static int writeJson(Devicelist List, Scanner systemIn) {
+    public static int writeJson(ArrayList<Appliances> List, Scanner systemIn) {
         try (Writer writer = new FileWriter("Out.json")) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(List, writer);
@@ -339,7 +342,7 @@ public class Main {
         }
     }
 
-    public static Devicelist readJson(Scanner systemIn) {
+    public static ArrayList<Appliances> readJson(Scanner systemIn) {
         cleanScreen();
         System.out.println("Введите название фала JSON");
         String filename = systemIn.nextLine();
@@ -348,7 +351,7 @@ public class Main {
         }
         try (FileReader reader = new FileReader(filename)) {
             Gson gson = new Gson();
-            return gson.fromJson(reader, Devicelist.class);
+            return new ArrayList<>(Arrays.asList(gson.fromJson(reader, Appliances[].class)));
         } catch (FileNotFoundException e) {
             logger.error("FileNotFoundException catched. JSON file can not be readed.");
             System.out.println("FileNotFoundException пойман!");

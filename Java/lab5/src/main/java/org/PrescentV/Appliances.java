@@ -1,14 +1,41 @@
-package Java.lab5;
+package org.PrescentV;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import java.util.Random;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.*;
+
+@JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.PROPERTY, property="type", visible = true)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Freezer.class, name = "Freezer"),
+        @JsonSubTypes.Type(value = Washer.class, name = "Washer"),
+        @JsonSubTypes.Type(value = Dishwasher.class, name = "Dishwasher")
+})
+@JsonTypeName("type")
 public abstract class Appliances {
+    protected static final Logger logger = LogManager.getLogger(Main.class);
     private String UUID;
     protected String modelName;
     protected String brandName;
     protected int oi = 0;
 
+    public Appliances() {
+        this.UUID = null;
+        this.modelName = null;
+        this.brandName = null;
+        this.oi = 0;
+    }
+
+    public Appliances(String UUID,String modelName, String brandName, int oi) {
+        this.UUID = UUID;
+        this.modelName = modelName;
+        this.brandName = brandName;
+        this.oi = oi;
+    }
     public Appliances(String modelName, String brandName) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         String randomString = "";
@@ -29,9 +56,13 @@ public abstract class Appliances {
 
     public void toggle() {
         if (oi == 1) {
+            logger.info("Device turned OFF");
             oi = 0;
-        } else {
+        } else if (oi == 0) {
+            logger.info("Device turned ON");
             oi = 1;
+        } else {
+            logger.error("DEVICE OUT OF SERVICE!");
         }
     }
 
@@ -61,6 +92,8 @@ public abstract class Appliances {
     public void setOi(int mode) {
         this.oi = mode;
     }
+
+    public void setUUID(String UUID) {this.UUID = UUID;}
     
     static void pressEnterToContinue(Scanner systemIn)
     { 

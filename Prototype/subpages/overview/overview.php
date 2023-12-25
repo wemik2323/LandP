@@ -72,7 +72,7 @@ if ($_SESSION['userStatus'] == 'admin') {
             </a>
             <a href="#">
                 <i class="fas fa-sliders-h"></i>
-                <span>Services</span>
+                <span>Setings</span>
             </a>
             <!-- IN PROGGRESS -->
 

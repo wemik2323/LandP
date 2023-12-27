@@ -170,7 +170,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             </a>
             <a href="#">
                 <i class="fas fa-sliders-h"></i>
-                <span>Services</span>
+                <span>Setings</span>
             </a>
             <!-- IN PROGGRESS -->
 

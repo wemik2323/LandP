@@ -71,7 +71,7 @@ window.onload = displayTime;
             </a>
             <a href="#">
                 <i class="fas fa-sliders-h"></i>
-                <span>???</span>
+                <span>Setings</span>
             </a>
             <!-- IN PROGGRESS -->
 

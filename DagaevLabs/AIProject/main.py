@@ -9,10 +9,13 @@ def imgParse(image_path):
 
     # Загрузка и предобработка изображения
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    
+
     if img is None:
         print(f"Ошибка загрузки изображения {image_path}")
         return
+    
+    # threshold, перевод в черно белое
+    img = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)[1]
     
     img = cv2.resize(img, (28, 28))
     img = img.reshape((1, 28, 28, 1)).astype('float32') / 255
@@ -53,7 +56,7 @@ model.compile(optimizer='adam',
             metrics=['accuracy'])
         
 # Обучение модели
-model.fit(train_images, train_labels, epochs=100, batch_size=64, validation_split=0.2)
+model.fit(train_images, train_labels, epochs=1, batch_size=64, validation_split=0.2)
 
 # Оценка модели на тестовых данных
 test_loss, test_acc = model.evaluate(test_images, test_labels)

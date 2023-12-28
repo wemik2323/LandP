@@ -14,7 +14,7 @@ def imgParse(image_path, model):
         print(f"Ошибка загрузки изображения {image_path}")
         return
     
-    # threshold, перевод в черно белое
+    # threshold, перевод в черно-белое
     img = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)[1]
     
     img = cv2.resize(img, (28, 28))
@@ -56,7 +56,7 @@ model.compile(optimizer='adam',
             metrics=['accuracy'])
         
 # Обучение модели
-model.fit(train_images, train_labels, epochs=1, batch_size=64, validation_split=0.2)
+model.fit(train_images, train_labels, epochs=5, batch_size=1, validation_split=0.2)
 
 # Оценка модели на тестовых данных
 test_loss, test_acc = model.evaluate(test_images, test_labels)
@@ -68,4 +68,3 @@ imgParse('test3.jpg', model)
 imgParse('test4.jpg', model)
 imgParse('test5.jpg', model)
 imgParse('test6.jpg', model)
-

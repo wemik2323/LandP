@@ -5,7 +5,7 @@ from tensorflow.keras.datasets import mnist
 import cv2
 import numpy as np
 
-def imgParse(image_path):
+def imgParse(image_path, model):
 
     # Загрузка и предобработка изображения
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
@@ -62,10 +62,10 @@ model.fit(train_images, train_labels, epochs=1, batch_size=64, validation_split=
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 print(f"Точность на тестовом наборе: {test_acc}")
 
-imgParse('test.jpg')
-imgParse('test2.jpg')
-imgParse('test3.jpg')
-imgParse('test4.jpg')
-imgParse('test5.jpg')
-imgParse('test6.jpg')
+imgParse('test.jpg', model)
+imgParse('test2.jpg', model)
+imgParse('test3.jpg', model)
+imgParse('test4.jpg', model)
+imgParse('test5.jpg', model)
+imgParse('test6.jpg', model)
 

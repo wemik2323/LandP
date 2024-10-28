@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.course.MainController">
+   <children>
+      <VBox fx:id="workspaceVbox" layoutX="14.0" layoutY="47.0" prefHeight="342.0" prefWidth="116.0" style="-fx-background-color: #2e3b4e;">
+         <children>
+            <Button fx:id="showPersonalBtn" mnemonicParsing="false" onAction="#showPersonal" prefHeight="25.0" prefWidth="125.0" text="Личное" />
+            <Button fx:id="showPatientsBtn" mnemonicParsing="false" onAction="#showPatients" prefHeight="25.0" prefWidth="150.0" text="Пациенты" />
+            <Button fx:id="makeStatementBtn" mnemonicParsing="false" onAction="#makeStatement" prefHeight="25.0" prefWidth="178.0" text="Создать запись" />
+         </children></VBox>
+      <Label fx:id="workspaceLabel" layoutX="14.0" layoutY="22.0" prefHeight="17.0" prefWidth="154.0" text="Рабочее пространство" />
+      <Label fx:id="emptyspaceLabel" layoutX="300.0" layoutY="47.0" prefHeight="36.0" prefWidth="89.0" text="Новости" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <VBox fx:id="mainVbox" alignment="CENTER" layoutX="157.0" layoutY="83.0" prefHeight="291.0" prefWidth="376.0" />
+   </children>
+</Pane>
